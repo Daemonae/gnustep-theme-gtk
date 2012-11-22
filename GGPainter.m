@@ -176,7 +176,7 @@ static inline NSImage *create_ns_image_from_pixmap(BOOL m_alpha, NSRect rect, Gd
 
     NSImage *converted = [self fromPixbuf: icon];
 
-    gdk_pixbuf_unref(icon);
+    g_object_unref(icon);
 
     return converted;
 }
@@ -192,11 +192,11 @@ static inline NSImage *create_ns_image_from_pixmap(BOOL m_alpha, NSRect rect, Gd
     {
       //assert(icon);
       converted = [self fromPixbuf: icon];
-      gdk_pixbuf_unref(icon);
+      g_object_unref(icon);
     }
   else
     {
-      NSLog(@"Failed to look up theme-based icon for iconName %s, using default.",iconName);
+      NSDebugLLog(@"Gtk", @"Failed to look up theme-based icon for iconName %s, using default.",iconName);
     }
   
   return converted;

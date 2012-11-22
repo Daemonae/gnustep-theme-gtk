@@ -191,7 +191,7 @@
 	      iP.x += r.size.width - 4;
 	    } 
 	  else
-	    NSLog(@"Unhandled case.\n");
+	    NSDebugLLog(@"Gtk", @"Unhandled case.\n");
 	  
 	  if (itemState == NSSelectedTab && i == howMany -1)
 	    r.size.width += 4;

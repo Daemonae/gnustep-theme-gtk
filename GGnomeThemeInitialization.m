@@ -72,12 +72,12 @@ void init_gtk_window()
   
   if ( [GGPainter getWidget: @"GtkWindow"] == (GtkWidget *)nil && [themeName length] == 0)
     {
-      NSLog (@"initializing GtkWindow");
+      NSDebugLLog (@"Gtk", @"initializing GtkWindow");
       themeName = getThemeName();
       
       x11ErrorHandler gs_x_errhandler = XSetErrorHandler(0);
       gtk_init (NULL, NULL);
-      gconf_init(NULL, NULL, NULL);
+      //gconf_init(NULL, NULL, NULL);
       GdkScreen *screen;
       GdkColormap *cmap;
       screen = gdk_screen_get_default();
@@ -97,7 +97,7 @@ void init_gtk_window()
 	displayDepth = gdk_drawable_get_depth(gtkWindow->window);
       
       [GGPainter setWidget: gtkWindow forKey: @"GtkWindow"];
-      NSLog (@"initializing GtkWindow finished ==========");
+      NSDebugLLog (@"Gtk", @"initializing GtkWindow finished ==========");
     }
 }
 
@@ -180,7 +180,7 @@ void init_gtk_widgets()
     add_widget(gtk_vscale_new((GtkAdjustment*)(gtk_adjustment_new(1, 0, 1, 0, 0, 0))));
     add_widget(gtk_vscrollbar_new(NULL));
   }
-    NSLog(@"Widget Map initialized: %@", [[GGPainter widgetMap] description]);
+    NSDebugLLog(@"Gtk", @"Widget Map initialized: %@", [[GGPainter widgetMap] description]);
 }
 
 void gtkStyleSetCallback(GtkWidget* widget, GtkStyle* style, void* foo)
@@ -212,7 +212,7 @@ void add_widget_to_map(GtkWidget *widget)
 {
   if (GTK_IS_WIDGET(widget)) {
     gtk_widget_realize(widget);
-    NSLog(@"registering widget: %@", classPath(widget));
+    NSDebugLLog(@"Gtk", @"registering widget: %@", classPath(widget));
     [GGPainter setWidget: widget forKey: classPath(widget)];
   }
 }
@@ -264,10 +264,10 @@ void setup_icons()
   // radio button theme images
   NSSize imgSize = [[NSImage imageNamed: @"NSHighlightedRadioButton"] size];
 
-  [[NSImage imageNamed: @"common_RadioOn"] setName: nil];
+  [(NSImage*)[NSImage imageNamed: @"common_RadioOn"] setName: nil];
   [[painter drawRadioButton: imgSize state: GTK_STATE_NORMAL shadow: GTK_SHADOW_IN] setName: @"common_RadioOn"];
 
-  [[NSImage imageNamed: @"common_RadioOff"] setName: nil];
+  [(NSImage*)[NSImage imageNamed: @"common_RadioOff"] setName: nil];
   [[painter drawRadioButton: imgSize state: GTK_STATE_NORMAL shadow: GTK_SHADOW_OUT] setName: @"common_RadioOff"];
   [[painter namedIcon: "unknown" withSize: 48] setName: @"common_Unknown"];
   [[painter namedIcon: "exec" withSize: 48] setName: @"common_UnknownTool"];
@@ -276,9 +276,9 @@ void setup_icons()
   // check button theme images
   imgSize = [[NSImage imageNamed: @"NSSwitch"] size];
 
-  [[NSImage imageNamed: @"common_SwitchOn"] setName: nil];
+  [(NSImage*)[NSImage imageNamed: @"common_SwitchOn"] setName: nil];
   [[painter drawCheckButton: imgSize state: GTK_STATE_NORMAL shadow: GTK_SHADOW_IN] setName: @"common_SwitchOn"];
-  [[NSImage imageNamed: @"common_SwitchOff"] setName: nil];
+  [(NSImage*)[NSImage imageNamed: @"common_SwitchOff"] setName: nil];
   [[painter drawCheckButton: imgSize state: GTK_STATE_NORMAL shadow: GTK_SHADOW_OUT] setName: @"common_SwitchOff"];
 
   NSString *icon_name = nil;

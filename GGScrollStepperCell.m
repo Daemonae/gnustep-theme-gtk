@@ -29,7 +29,7 @@
   NSImage *img;
   // GtkRange *range = GTK_RANGE(widget);
 
-  if (widget == nil)
+  if (widget == NULL)
     {
       [super _drawBorderAndBackgroundWithFrame: cellFrame
 					inView: controlView];

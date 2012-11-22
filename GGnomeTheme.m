@@ -15,7 +15,7 @@ void gconf_key_changed_callback(GConfClient *client,
 				GConfEntry *entry,
 				gpointer user_data)
 {
-  // NSLog(@"Changed...");
+  NSDebugLLog(@"Gtk", @"Changed...");
   [[GSTheme theme] deactivate];
   [[GSTheme theme] activate];
 }
@@ -429,7 +429,7 @@ void gconf_key_changed_callback(GConfClient *client,
 
 - (void) timerCallback: (NSTimer *)timer
 {
-  // NSLog(@"Call gtk mainloop");
+  NSDebugLLog(@"Gtk", @"Call gtk mainloop");
   gtk_main_iteration_do(FALSE);
 }
 
@@ -468,7 +468,7 @@ void gconf_key_changed_callback(GConfClient *client,
 						    repeats:YES];
     }
 
-  NSLog (@"Gnome theme initialized");
+  NSDebugLLog(@"Gtk", @"Gnome theme initialized");
   [super activate];
 }
 

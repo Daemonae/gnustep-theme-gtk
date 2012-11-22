@@ -40,7 +40,7 @@
 
   GtkWidget *widget = [GGPainter getWidget: horizontal ? @"GtkHScrollbar" : @"GtkVScrollbar"];
 
-  if (widget == nil)
+  if (widget == NULL)
     {
       [super _drawBorderAndBackgroundWithFrame: cellFrame
 					inView: controlView];

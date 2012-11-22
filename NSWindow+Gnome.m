@@ -15,7 +15,8 @@
      [window isKindOfClass: cacheWindowClass] == NO &&
      [window isKindOfClass: menuPanelClass] == NO)
     {
-      NSLog(@"Reparent window to GtkWindow here for NSWindow %@, number %d.",[window title],[window windowNumber]);
+      NSDebugLLog(@"Gtk", @"Reparent window to GtkWindow here for NSWindow %@, number %d.",
+				[window title],[window windowNumber]);
     }
 }
 
